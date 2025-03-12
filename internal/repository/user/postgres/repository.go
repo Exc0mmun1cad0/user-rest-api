@@ -57,7 +57,7 @@ func (r *repo) CreateUser(user *entity.User) (*entity.User, error) {
 }
 
 // newUserInfo consists of new fields for user to be changed and old ones
-func (r *repo) UpdateUser(userID string, newUserInfo entity.User) (*entity.User, error) {
+func (r *repo) UpdateUser(userID string, newUserInfo *entity.User) (*entity.User, error) {
 	const op = "repository.user.postgres.UpdateUser"
 
 	var newUser entity.User
