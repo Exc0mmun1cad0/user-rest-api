@@ -3,6 +3,6 @@ package user
 import "errors"
 
 var (
-	ErrUserNotFound      = errors.New("user not found")
-	ErrUserAlreadyExists = errors.New("user with this email already exists")
+	ErrUserNotFound       = errors.New("user not found")
+	ErrEmailAlreadyExists = errors.New("user with this email already exists")
 )

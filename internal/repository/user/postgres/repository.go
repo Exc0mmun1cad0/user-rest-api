@@ -48,7 +48,7 @@ func (r *repo) CreateUser(user *entity.User) (*entity.User, error) {
 	)
 	if err != nil {
 		if pqErr, ok := err.(*pq.Error); ok && pqErr.Code == "23505" {
-			return nil, fmt.Errorf("%s: %w", op, userrepo.ErrUserAlreadyExists)
+			return nil, fmt.Errorf("%s: %w", op, userrepo.ErrEmailAlreadyExists)
 		}
 		return nil, fmt.Errorf("%s: %w", op, err)
 	}
@@ -73,7 +73,7 @@ func (r *repo) UpdateUser(userID string, newUserInfo *entity.User) (*entity.User
 	)
 	if err != nil {
 		if pqErr, ok := err.(*pq.Error); ok && pqErr.Code == "23505" {
-			return nil, fmt.Errorf("%s: %w", op, userrepo.ErrUserAlreadyExists)
+			return nil, fmt.Errorf("%s: %w", op, userrepo.ErrEmailAlreadyExists)
 		}
 
 		if errors.Is(err, sql.ErrNoRows) {
