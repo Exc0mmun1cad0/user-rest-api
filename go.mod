@@ -4,6 +4,7 @@ go 1.23.4
 
 require (
 	github.com/BurntSushi/toml v1.4.0 // indirect
+	github.com/go-chi/chi/v5 v5.2.1 // indirect
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/ilyakaznacheev/cleanenv v1.5.0 // indirect
 	github.com/jmoiron/sqlx v1.4.0 // indirect
