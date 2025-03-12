@@ -12,17 +12,17 @@ import (
 	"github.com/lib/pq"
 )
 
-type repo struct {
+type Repo struct {
 	db *sqlx.DB
 }
 
-func NewRepo(db *sqlx.DB) *repo {
-	return &repo{
+func NewRepo(db *sqlx.DB) *Repo {
+	return &Repo{
 		db: db,
 	}
 }
 
-func (r *repo) GetUser(userID string) (*entity.User, error) {
+func (r *Repo) GetUser(userID string) (*entity.User, error) {
 	const op = "repository.user.postgres.GetUser"
 
 	var user entity.User
@@ -37,7 +37,7 @@ func (r *repo) GetUser(userID string) (*entity.User, error) {
 	return &user, nil
 }
 
-func (r *repo) CreateUser(user *entity.User) (*entity.User, error) {
+func (r *Repo) CreateUser(user *entity.User) (*entity.User, error) {
 	const op = "repository.user.postgres.CreateUser"
 
 	var newUser entity.User
@@ -57,7 +57,7 @@ func (r *repo) CreateUser(user *entity.User) (*entity.User, error) {
 }
 
 // newUserInfo consists of new fields for user to be changed and old ones
-func (r *repo) UpdateUser(userID string, newUserInfo *entity.User) (*entity.User, error) {
+func (r *Repo) UpdateUser(userID string, newUserInfo *entity.User) (*entity.User, error) {
 	const op = "repository.user.postgres.UpdateUser"
 
 	var newUser entity.User
@@ -86,7 +86,7 @@ func (r *repo) UpdateUser(userID string, newUserInfo *entity.User) (*entity.User
 	return &newUser, nil
 }
 
-func (r *repo) DeleteUser(userID string) error {
+func (r *Repo) DeleteUser(userID string) error {
 	const op = "repository.user.postgres.DeleteUser"
 
 	res, err := r.db.Exec(`DELETE FROM users WHERE user_id = $1`, userID)
