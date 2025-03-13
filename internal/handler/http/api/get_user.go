@@ -29,7 +29,7 @@ func (h *Handler) GetUser(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	if err != nil {
-		log.Info("failed to get user information")
+		log.Info("failed to get user information", slog.String("user_id", userID))
 		http.Error(w, "user info not found", http.StatusInternalServerError)
 
 		return
@@ -45,6 +45,7 @@ func (h *Handler) GetUser(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	w.WriteHeader(http.StatusOK)
 	_, err = w.Write(resp)
 	if err != nil {
 		log.Error("failed to write response")
