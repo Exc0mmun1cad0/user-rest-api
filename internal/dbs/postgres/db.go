@@ -15,7 +15,7 @@ func New(cfg *Config) (*sqlx.DB, error) {
 		"user=%s password=%s host=%s port=%d dbname=%s sslmode=%s",
 		cfg.User, cfg.Password, cfg.Host, cfg.Port, cfg.DB, cfg.SSLMode,
 	)
-
+	fmt.Println(dataSource)
 	conn, err := sqlx.Connect("postgres", dataSource)
 	if err != nil {
 		return nil, fmt.Errorf("%s: %w", op, err)

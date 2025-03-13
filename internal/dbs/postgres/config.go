@@ -2,6 +2,7 @@ package postgres
 
 import (
 	"fmt"
+	"os"
 
 	"github.com/ilyakaznacheev/cleanenv"
 	"github.com/joho/godotenv"
@@ -19,7 +20,7 @@ type Config struct {
 func MustLoad() (*Config, error) {
 	const op = "dbs.postgres.MustLoad"
 
-	if err := godotenv.Load(); err != nil {
+	if err := godotenv.Load(); err != nil && !os.IsNotExist(err) {
 		return nil, fmt.Errorf("%s: %w", op, err)
 	}
 
