@@ -60,7 +60,7 @@ func (s *Service) UpdateUser(userID string, newUserInfo *entity.User) (*entity.U
 	user, err := s.userRepo.GetUser(userID)
 	if err != nil {
 		if errors.Is(err, userrepo.ErrUserNotFound) {
-			return nil, fmt.Errorf("%s: %w", op, err)
+			return nil, fmt.Errorf("%s: %w", op, ErrUserNotFound)
 		}
 
 		return nil, fmt.Errorf("%s: %w", op, err)
@@ -82,7 +82,7 @@ func (s *Service) UpdateUser(userID string, newUserInfo *entity.User) (*entity.U
 	newUser, err := s.userRepo.UpdateUser(userID, user)
 	if err != nil {
 		if errors.Is(err, userrepo.ErrEmailAlreadyExists) {
-			return nil, fmt.Errorf("%s: %w", op, err)
+			return nil, fmt.Errorf("%s: %w", op, ErrEmailAlreadyExists)
 		}
 
 		return nil, fmt.Errorf("%s: %w", op, err)
