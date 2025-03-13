@@ -21,7 +21,7 @@ func (h *Handler) CreateUser(w http.ResponseWriter, r *http.Request) {
 
 	var newUser entity.User
 	if err := json.NewDecoder(r.Body).Decode(&newUser); err != nil {
-		log.Error("failed to decode response", slog.Any("error", err.Error()))
+		log.Error("failed to decode request", slog.Any("error", err.Error()))
 		http.Error(w, "invalid request", http.StatusNotFound)
 
 		return
@@ -52,6 +52,7 @@ func (h *Handler) CreateUser(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	w.WriteHeader(http.StatusCreated)
 	_, err = w.Write(resp)
 	if err != nil {
 		log.Error("failed to write response", slog.Any("error", err.Error()))
