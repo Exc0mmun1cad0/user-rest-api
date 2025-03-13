@@ -1,7 +1,7 @@
 app:
   env: "prod"
 http:
-  host: "127.0.0.1"
-  port: 8081
+  host: ""
+  port: 8080
   timeout: 9s
   idle_timeout: 31s
