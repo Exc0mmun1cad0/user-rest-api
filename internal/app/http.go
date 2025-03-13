@@ -3,7 +3,7 @@ package app
 import (
 	"log/slog"
 	"test-api-task/internal/handler/http"
-	"test-api-task/internal/handler/http/api"
+	httpapi "test-api-task/internal/handler/http/api"
 )
 
 func (a *App) StartHTTPServer() {
@@ -12,7 +12,7 @@ func (a *App) StartHTTPServer() {
 }
 
 func (a *App) startHttpServer() {
-	handler := api.NewHandler(a.c.GetUserRepo(), a.log)
+	handler := httpapi.NewHandler(a.c.GetUserService(), a.log)
 
 	router := http.NewRouter()
 	router.WithHandler(handler, a.log)
